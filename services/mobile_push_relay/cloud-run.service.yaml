@@ -1,0 +1,38 @@
+# Rendered by deploy.sh. The image must remain an immutable Artifact Registry
+# reference with a sha256 digest; do not replace it with a mutable tag.
+apiVersion: serving.knative.dev/v1
+kind: Service
+metadata:
+  name: hermes-mobile-push-relay
+  annotations:
+    run.googleapis.com/ingress: internal-and-cloud-load-balancing
+spec:
+  template:
+    metadata:
+      annotations:
+        run.googleapis.com/execution-environment: gen2
+    spec:
+      serviceAccountName: __RELAY_SERVICE_ACCOUNT__
+      containers:
+        - name: relay
+          image: __RELAY_IMAGE_DIGEST__
+          ports:
+            - containerPort: 8080
+          env:
+            - name: RELAY_BACKEND
+              value: firestore
+            - name: RELAY_ENV
+              value: production
+            - name: GOOGLE_CLOUD_PROJECT
+              value: __RELAY_PROJECT_ID__
+          securityContext:
+            runAsNonRoot: true
+            readOnlyRootFilesystem: true
+          volumeMounts:
+            - name: relay-tmpfs
+              mountPath: /tmp
+      volumes:
+        - name: relay-tmpfs
+          emptyDir:
+            medium: Memory
+            sizeLimit: 64Mi

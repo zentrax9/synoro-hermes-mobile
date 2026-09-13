@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">Hermes Mobile</string>
+    <string name="notification_channel_attention_name">Hermes attention</string>
+    <string name="notification_channel_attention_description">Generic Hermes status alerts. Open Hermes to load message content securely.</string>
+    <string name="notification_channel_attention_id">hermes_attention</string>
+</resources>
