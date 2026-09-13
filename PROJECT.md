@@ -1,8 +1,8 @@
-# Hermes Mobile — release dossier
+# Synoro Hermes Mobile — release dossier
 
 **Release status:** INCOMPLETE — NOT READY
 
-This dossier is the repository-level release record for the Hermes Mobile R1 implementation.
+This dossier is the repository-level release record for the Synoro Hermes Mobile implementation.
 The detailed design, threat model, test matrix, deployment runbook, and review proof remain in
 [`docs/`](docs/).
 
@@ -31,12 +31,18 @@ tokens, and audit metadata are sensitive data. The implementation and handling e
 
 ## Evidence anchor
 
-- **Branch:** `codex/hermes-mobile-r1`
-- **HEAD:** `693641aa8b4359c602283bdbbc14041e03bc47bc`
-- **Working tree:** dirty; the implementation is not commit-sealed.
-- **Local Python gate:** `169 passed, 1 skipped, 0 failed in 24.2s` on 2026-09-08. The skipped
-  attachment symlink case requires host capability unavailable on this Windows machine.
+- **Canonical branch:** `main` in `zentrax9/synoro-hermes-mobile`.
+- **Local upload branch:** `upload-main` mirrors `main` in the publishing checkout. Verify the
+  exact revision on any machine with `git rev-parse HEAD` and `git status --short`.
+- **Working tree at last upload:** clean; the implementation and documentation are committed and
+  pushed. This is source-control evidence, not release approval.
+- **Local Python gate:** `174 passed, 1 skipped, 0 failed` in the latest recorded mobile/relay
+  run. The skipped attachment symlink case requires host capability unavailable on this Windows
+  machine.
 - **Static checks:** Ruff, compileall, and `git diff --check` pass.
+- **Android gate:** not run on the publishing PC because JDK 17 and the Android SDK were absent.
+  Follow [`docs/ANDROID-STUDIO-HANDOFF.md`](docs/ANDROID-STUDIO-HANDOFF.md) on an Android-enabled
+  PC and record the results before claiming a build or release.
 
 ## Live deployment boundary
 
@@ -58,7 +64,8 @@ No live deployment, Android build/signing, device test, or independent review is
 4. Provide the live VM/Cloudflare/GCP/Firebase/signing coordinates and execute the deployment and
    revocation gates.
 5. Run the Android toolchain, skipped symlink case, dependency/static checks, accessibility checks,
-   and independent review; then seal the review proof from a clean commit.
+   and independent review; then seal the review proof from a clean commit. The exact Android
+   sequence is captured in [`docs/ANDROID-STUDIO-HANDOFF.md`](docs/ANDROID-STUDIO-HANDOFF.md).
 
 See [`docs/PROJECT.md`](docs/PROJECT.md), [`docs/TEST-SCENARIO.md`](docs/TEST-SCENARIO.md), and
 [`docs/REVIEW-PROOF.md`](docs/REVIEW-PROOF.md) for the full gate matrix and evidence.

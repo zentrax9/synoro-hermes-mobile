@@ -1,6 +1,6 @@
-# Hermes Mobile Android client
+# Synoro Hermes Mobile Android client
 
-This is the secure R1 Android client for Hermes Mobile. It contains the typed API transport,
+This is the secure R1 Android client for Synoro Hermes Mobile. It contains the typed API transport,
 durable profile-scoped cursor reconciliation, encrypted Room/DataStore state, resumable attachment
 primitives, loopback PKCE, device-proof authentication, WorkManager wake handling, an app-private
 AAC-LC/M4A voice recorder, and a Compose shell for the bot roster, transcript cards, groups,

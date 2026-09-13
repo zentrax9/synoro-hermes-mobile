@@ -1,7 +1,9 @@
-# Hermes Mobile — release dossier
+# Synoro Hermes Mobile — release dossier
 
-> **Scope note.** This is the detailed docs-scoped project dossier prepared for the Hermes Mobile R1
-> implementation. The repository-level release record is [`../PROJECT.md`](../PROJECT.md); it keeps
+> **Scope note.** This is the detailed docs-scoped project dossier prepared for the Synoro Hermes
+> Mobile implementation. The Android Studio resume sequence is in
+> [`ANDROID-STUDIO-HANDOFF.md`](ANDROID-STUDIO-HANDOFF.md). The repository-level release record is
+> [`../PROJECT.md`](../PROJECT.md); it keeps
 > the required ownership, risk, and live-coordinate fields explicit and unassigned until the
 > operator supplies them.
 
@@ -10,11 +12,14 @@
 - **Release state:** `INCOMPLETE — NOT READY`. The Python mobile implementation and its local
   contract tests are present, but Android toolchain, live Access/Tunnel, VM, push-relay, signing,
   enrollment, and independent-review gates are not evidenced in this checkout.
-- **Evidence anchor:** `693641aa8b4359c602283bdbbc14041e03bc47bc` (`git rev-parse HEAD`), branch
-  `codex/hermes-mobile-r1`.
-- **Working tree:** dirty. The mobile implementation, Android client, relay, tests, and related
-  dashboard changes are uncommitted. Any local test pass is therefore recorded against
-  `HEAD (dirty)`, not as a release commit.
+- **Evidence anchor:** `main` in `zentrax9/synoro-hermes-mobile`; verify the exact revision on any
+  machine with `git rev-parse HEAD` and `git status --short`.
+- **Working tree at last upload:** clean. The mobile implementation, Android client, relay, tests,
+  dashboard changes, and handoff documentation are committed and pushed. This is source-control
+  evidence, not release approval.
+- **Latest recorded local gate:** 174 mobile/relay tests passed, 1 attachment symlink case skipped;
+  Ruff, compileall, and `git diff --check` passed. Android compilation was not run because the
+  publishing PC had no JDK 17 or Android SDK.
 - **Deployment claim:** none. No VM, Cloudflare, GCP, Firebase, APK, release key, or live host
   coordinates are recorded in this dossier.
 
@@ -113,7 +118,7 @@ independence.
 | Gate | Evidence required | Current status |
 |---|---|---|
 | Repository dossier and risk classification | Root `PROJECT.md` with owner, support email, risk tier, data, access, and approvals | **BLOCKED** — dossier exists, but owner/support/risk/approvals remain unassigned |
-| Local Python contract/security tests | Canonical per-file isolation runner covering mobile listener and relay tests | **PASS with limitation** — `169 passed, 1 skipped, 0 failed in 24.2s` on 2026-09-08; the skipped symlink test requires host capability (`docs/TEST-SCENARIO.md`) |
+| Local Python contract/security tests | Canonical per-file isolation runner covering mobile listener and relay tests | **PASS with limitation** — latest recorded run: `174 passed, 1 skipped, 0 failed`; the skipped symlink test requires host capability (`docs/TEST-SCENARIO.md`) |
 | Android unit tests | `gradle testDebugUnitTest` with JDK 17 and Android SDK API 36 | **NOT RUN** — this host has no `java`, Gradle, Android SDK, `adb`, or `kotlinc` (`apps/android/README.md:90-102`) |
 | Android lint and release build | `gradle lintDebug`; `gradle assembleRelease`; release coordinates pass `verifyReleaseConfiguration` | **NOT RUN** — no Android toolchain or signing configuration evidenced |
 | VM listener | Exact revision, dedicated non-root service, loopback bind, configured issuer/audience, HTTPS public URL, non-empty allowlists | **NOT RUN** — coordinates intentionally absent; runbook is coordinate-driven (`docs/deployment/hermes-mobile-ugreen-vm.md:7-35`) |
@@ -153,4 +158,5 @@ missing, and the human/live gates were not executed.
 - Coordinate-driven VM, tunnel, enrollment, and relay runbook:
   [`deployment/hermes-mobile-ugreen-vm.md`](deployment/hermes-mobile-ugreen-vm.md).
 - Test matrix and current local results: [`TEST-SCENARIO.md`](TEST-SCENARIO.md).
+- Android Studio resume sequence: [`ANDROID-STUDIO-HANDOFF.md`](ANDROID-STUDIO-HANDOFF.md).
 - Review status and blockers: [`REVIEW-PROOF.md`](REVIEW-PROOF.md).

@@ -9,6 +9,16 @@ pending.
 
 Last generated: **2026-09-08** · aligned to [`DESIGN.md`](DESIGN.md)
 
+## Current repository snapshot
+
+The canonical source is the `main` branch of
+[`zentrax9/synoro-hermes-mobile`](https://github.com/zentrax9/synoro-hermes-mobile). The
+implementation and handoff documentation are now committed and pushed. The latest recorded
+host/relay run is **174 passed, 1 skipped, 0 failed**; Android, live deployment, and independent
+review gates remain pending. The per-scenario commit IDs below are historical evidence from the
+2026-09-08 implementation pass. Re-run the pending scenarios on the Android-enabled PC and record
+the new revision and command output before treating them as current evidence.
+
 ## Summary
 
 | Metric | Count |
